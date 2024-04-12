@@ -1,6 +1,6 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
-import { pgTable, serial, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 /* import schema */
 import { tbl_class_entries } from "./tbl_class_entries";
@@ -8,7 +8,9 @@ import { tbl_workshop_entries } from "./tbl_workshop_entries";
 
 export const tbl_users = pgTable("tbl_users", {
   id: serial("id").primaryKey(),
-  user_id: uuid("user_id").defaultRandom().unique(),
+  user_id: text("user_id")
+    .unique()
+    .default(sql`gen_random_uuid()`),
 
   first_name: text("first_name").default(""),
   last_name: text("last_name").default(""),

@@ -5,21 +5,21 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "generate": "drizzle-kit generate:sqlite",
-    "push": "drizzle-kit push:sqlite",
-    "migrate": "drizzle-kit generate:sqlite --schema=./src/schema",
-    "studio": "drizzle-kit studio --port 3333"
+    "generate": "drizzle-kit generate:pg --config ./drizzle.config.ts",
+    "migrate": "bun migrate.ts",
+    "studio": "drizzle-kit studio --port 3333",
+    "push": "drizzle-kit push:pg --config ./drizzle.config.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@neondatabase/serverless": "^0.9.0",
     "@t3-oss/env-core": "^0.8.0",
-    "@xata.io/client": "^0.29.4",
-    "@xata.io/drizzle": "^0.0.21",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.8",
     "pg": "^8.11.5",
+    "postgres": "^3.4.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {

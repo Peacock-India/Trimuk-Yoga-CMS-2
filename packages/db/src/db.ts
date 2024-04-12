@@ -1,13 +1,14 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Client } from "pg";
-
-import { env } from "../env.mjs";
+import { neon } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "./schema";
 
-const client = new Client({
-  connectionString: env.DATABASE_URL,
+import { env } from "../env.mjs";
+
+const sql = neon(env.DATABASE_URL);
+
+export const db = drizzle(sql, {
+  schema,
 });
 
-await client.connect();
-
-export const db = drizzle(client, { schema, logger: false });
+// Inside db.ts or a similar file where you connect to the DB
+console.log("Connecting to DB with URL: ", env.DATABASE_URL);

@@ -1,6 +1,0 @@
-{
-  "databaseURL": "https://Jackson-Kasi-s-workspace-go037b.us-east-1.xata.sh/db/Trimuk-Yoga",
-  "codegen": {
-    "output": "src/xata.ts"
-  }
-}

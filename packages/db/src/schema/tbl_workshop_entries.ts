@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
 import {
   integer,
@@ -7,7 +7,6 @@ import {
   serial,
   text,
   timestamp,
-  uuid,
 } from "drizzle-orm/pg-core";
 
 /* import schema */
@@ -16,7 +15,9 @@ import { tbl_workshop } from "./tbl_workshop";
 
 export const tbl_workshop_entries = pgTable("tbl_workshop_entries", {
   id: serial("id").primaryKey(),
-  entry_id: uuid("entry_id").unique().defaultRandom(),
+  entry_id: text("entry_id")
+    .unique()
+    .default(sql`gen_random_uuid()`),
 
   user_id: text("user_id")
     .notNull()

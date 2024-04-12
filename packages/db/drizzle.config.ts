@@ -1,12 +1,13 @@
 import type { Config } from "drizzle-kit";
 import { env } from "./env.mjs";
 
-export default {
-  schema: "./src/schema/index.ts",
-  driver: "turso",
+const config: Config = {
+  schema: "./src/schema/index.ts", // Path to your schema file
+  out: "./drizzle", // Output directory for generated code
+  driver: "pg", // PostgreSQL driver
   dbCredentials: {
-    url: env.DATABASE_URL,
-    authToken: env.DATABASE_AUTH_TOKEN,
+    connectionString: env.DATABASE_URL,
   },
-  out: "./drizzle",
-} satisfies Config;
+};
+
+export default config;
