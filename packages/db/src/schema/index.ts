@@ -1,7 +1,6 @@
-export * from "./admin";
-export * from "./class_model";
-export * from "./class_entries";
-export * from "./users";
-export * from "./workshop";
-export * from "./workshop_entries";
-
+export * from "./tbl_admin";
+export * from "./tbl_class";
+export * from "./tbl_class_entries";
+export * from "./tbl_users";
+export * from "./tbl_workshop";
+export * from "./tbl_workshop_entries";

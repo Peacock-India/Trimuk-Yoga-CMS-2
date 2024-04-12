@@ -1,12 +1,13 @@
-import { createClient } from "@libsql/client/http";
-import { drizzle } from "drizzle-orm/libsql";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Client } from "pg";
 
 import { env } from "../env.mjs";
 import * as schema from "./schema";
 
-const client = createClient({
-  url: env.DATABASE_URL,
-  authToken: env.DATABASE_AUTH_TOKEN,
+const client = new Client({
+  connectionString: env.DATABASE_URL,
 });
 
-export const db = drizzle(client, { schema, logger: true });
+await client.connect();
+
+export const db = drizzle(client, { schema, logger: false });
